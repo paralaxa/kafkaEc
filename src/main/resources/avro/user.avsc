@@ -1,0 +1,50 @@
+{  
+   "type":"record",
+   "namespace":"sk.eastcode",
+   "name":"User",
+   "doc":"User schema",
+   "fields":[  
+      {  
+         "name":"username",
+         "type":"string",
+         "doc":"user name"
+      },
+      {  
+         "name":"password",
+         "type":"string",
+         "doc":"user password"
+      },
+      {  
+         "name":"email",
+         "type":[  
+            "null",
+            "string"
+         ],
+         "doc":"user email - optional",
+         "default":null
+      },
+      {  
+         "name":"roles",
+         "type":{  
+            "type":"array",
+            "items":{  
+               "name":"Role",
+               "type":"record",
+               "fields":[  
+                  {  
+                     "name":"type",
+                     "type":{  
+                        "name":"RoleType",
+                        "type":"enum",
+                        "symbols":[  
+                           "ADMIN",
+                           "USER"
+                        ]
+                     }
+                  }
+               ]
+            }
+         }
+      }
+   ]
+}
