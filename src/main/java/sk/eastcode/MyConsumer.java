@@ -36,7 +36,6 @@ public class MyConsumer {
         //alebo vyhodnocovanie abusive userov, kym processing pokracuje dalej, roundtrip streaming
         //kafka transactions
         //more consumers than partitions
-        //add 4 consumers to 3 partitions topic and kill one cunsimer (will zookeeper add the new one instaed?)
         //show rebalance (ie adding and removing consumers within same group)
         @Override
         public void run() {
