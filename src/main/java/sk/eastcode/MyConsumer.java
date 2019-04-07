@@ -33,8 +33,6 @@ public class MyConsumer {
 //todo
         //kafka semantic (commit at least once, ot most one, exactly once)
         //co je vyhoda eventov (viac konzumerov moze citat domenovy event, ie u nas log aj consumer)
-        //alebo vyhodnocovanie abusive userov, kym processing pokracuje dalej, roundtrip streaming
-        //kafka transactions
         //more consumers than partitions
         //show rebalance (ie adding and removing consumers within same group)
         @Override
