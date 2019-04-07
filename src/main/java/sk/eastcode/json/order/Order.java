@@ -1,14 +1,14 @@
-package sk.eastcode.order;
+package sk.eastcode.json.order;
 
 public class Order {
     private Long id;
     private Long storeId;
-    private String orderItem;
+    private String item;
 
-    public Order(Long id, Long storeId, String orderItem) {
+    public Order(Long id, Long storeId, String item) {
         this.id = id;
         this.storeId = storeId;
-        this.orderItem = orderItem;
+        this.item = item;
     }
 
     public Long getId() {
@@ -27,12 +27,12 @@ public class Order {
         this.storeId = storeId;
     }
 
-    public String getOrderItem() {
-        return orderItem;
+    public String getItem() {
+        return item;
     }
 
-    public void setOrderItem(String orderItem) {
-        this.orderItem = orderItem;
+    public void setItem(String item) {
+        this.item = item;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", storeId=" + storeId +
-                ", orderItem='" + orderItem + '\'' +
+                ", item='" + item + '\'' +
                 '}';
     }
 }

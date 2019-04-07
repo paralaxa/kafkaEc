@@ -1,0 +1,24 @@
+{  
+   "type":"record",
+   "namespace":"sk.eastcode.model",
+   "name":"Order",
+   "doc":"Order schema",
+   "fields":[  
+      {  
+         "name":"id",
+         "type":"long",
+         "doc":"identifier"
+      },
+      {  
+         "name":"storeId",
+         "type":"long",
+         "doc":"store identifier"
+      },
+      {
+         "name":"item",
+         "type":"string",
+         "doc":"item for this order"
+      }
+
+   ]
+}
