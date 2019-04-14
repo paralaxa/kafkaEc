@@ -17,7 +17,7 @@ public class OrderProducer {
         Properties props = new Properties();
         props.put("bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094");
         props.put("key.serializer", LongSerializer.class.getName());
-        props.setProperty("value.deserializer", KafkaAvroSerializer.class.getName());
+        props.setProperty("value.serializer", KafkaAvroSerializer.class.getName());
         props.setProperty("schema.registry.url", "http://localhost:8081");
         Producer<Long, Order> producer = new KafkaProducer<>(props);
         int i = 0;

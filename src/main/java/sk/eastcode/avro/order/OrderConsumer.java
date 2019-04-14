@@ -4,7 +4,7 @@ import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.serialization.LongSerializer;
+import org.apache.kafka.common.serialization.LongDeserializer;
 import sk.eastcode.model.Order;
 
 import java.time.Duration;
@@ -18,7 +18,7 @@ public class OrderConsumer {
         props.put("group.id", "my_consumer_group");
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
-        props.put("key.deserializer", LongSerializer.class.getName());
+        props.put("key.deserializer", LongDeserializer.class.getName());
         props.put("value.deserializer", KafkaAvroDeserializer.class.getName());
         props.setProperty("schema.registry.url", "http://localhost:8081");
         props.setProperty("specific.avro.reader", "true");
