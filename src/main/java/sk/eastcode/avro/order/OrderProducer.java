@@ -5,6 +5,7 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.LongSerializer;
+import sk.eastcode.OrderUtils;
 import sk.eastcode.model.Order;
 
 import java.util.Properties;
@@ -17,21 +18,27 @@ public class OrderProducer {
         Properties props = new Properties();
         props.put("bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094");
         props.put("key.serializer", LongSerializer.class.getName());
-        props.setProperty("value.serializer", KafkaAvroSerializer.class.getName());
-        props.setProperty("schema.registry.url", "http://localhost:8081");
+        props.put("value.serializer", KafkaAvroSerializer.class.getName());
+        props.put("schema.registry.url", "http://localhost:8081");
+
         Producer<Long, Order> producer = new KafkaProducer<>(props);
-        int i = 0;
+
         try {
-            while (true) {
-                i++;
-                long storeId = (i % STORE_COUNT);
-                Order order = new Order((long)i, storeId, "item_number"+i);
-                ProducerRecord<Long, Order> producerRecord = new ProducerRecord<>
-                        ("order", storeId, order);
+            for (long i = 0; true; i++) {
+                Order order = Order.newBuilder()
+                        .setId(i)
+                        .setStoreId(i % STORE_COUNT)
+                        .setItem(OrderUtils.getRandomStoreItem())
+                        .build();
+
+                ProducerRecord<Long, Order> producerRecord =
+                        new ProducerRecord<>("avro_orders", order.getStoreId(), order);
+
                 producer.send(producerRecord);
-                producer.flush();
+
+                System.out.println("producing: " + order);
+
                 Thread.sleep(1000);
-                System.out.println("producing : "+order);
             }
         } catch (Exception e) {
             e.printStackTrace();
