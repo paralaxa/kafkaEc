@@ -43,7 +43,7 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka_2.11</artifactId>
             <!-- For CP 3.1.0 -->
-            <version>0.10.1.0-cp1</version>
+            <version>2.3.0</version>
         </dependency>
 
         <dependency>
